@@ -106,5 +106,5 @@ binding keys[] = {
 	{ .mod = Mod4Mask,    .key = XK_e,                 .act = ACTION_FIND_OR_START, .data = "gvim"           },
 	{ .mod = AnyModifier, .key = XF86XK_AudioLowerVolume, .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master 3dB-"        },
 	{ .mod = AnyModifier, .key = XF86XK_AudioRaiseVolume, .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master 3dB+"        },
-	{ .mod = AnyModifier, .key = XF86XK_AudioMute,        .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master toggle"        },
+	{ .mod = AnyModifier, .key = XF86XK_AudioMute,        .act = ACTION_COMMAND,       .data = "amixer -q sset Master toggle"        },
 };
