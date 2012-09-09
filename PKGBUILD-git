@@ -1,18 +1,18 @@
 # Contributor: Sean Pringle <sean.pringle@gmail.com>
 
 pkgname=xoat-git
-pkgver=20120901
+pkgver=20120909
 pkgrel=1
 pkgdesc="X11 Obstinate Asymmetric Tiler"
 arch=('i686' 'x86_64')
-url="http://github.com/seanpringle/xoat"
+url="http://github.com/bjauy/xoat"
 license=('MIT')
 depends=('libx11')
 makedepends=('git')
 provides=('xoat')
 conflicts=('xoat')
 
-_gitroot="git://github.com/seanpringle/xoat.git"
+_gitroot="git://github.com/bjauy/xoat.git"
 _gitname="xoat"
 
 build() {

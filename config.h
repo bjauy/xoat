@@ -97,7 +97,14 @@ binding keys[] = {
 	{ .mod = Mod4Mask, .key = XK_r, .act = ACTION_ROLLBACK },
 
 	// Find or start apps by WM_CLASS (lower case match).
-	{ .mod = AnyModifier, .key = XK_F1, .act = ACTION_FIND_OR_START, .data = "urxvt"    },
-	{ .mod = AnyModifier, .key = XK_F2, .act = ACTION_FIND_OR_START, .data = "chromium" },
-	{ .mod = AnyModifier, .key = XK_F3, .act = ACTION_FIND_OR_START, .data = "pcmanfm"  },
+	
+	// Changed apps
+	{ .mod = Mod4Mask,    .key = XK_l,                 .act = ACTION_COMMAND,       .data = "gdmflexiserver" },
+	{ .mod = Mod4Mask,    .key = XK_Return,            .act = ACTION_FIND_OR_START, .data = "urxvt"          },
+	{ .mod = Mod4Mask,    .key = XK_w,                 .act = ACTION_FIND_OR_START, .data = "firefox"        },
+	{ .mod = Mod4Mask,    .key = XK_e,                 .act = ACTION_FIND_OR_START, .data = "gvim"           },
+	{ .mod = Mod4Mask,    .key = XK_e,                 .act = ACTION_FIND_OR_START, .data = "gvim"           },
+	{ .mod = AnyModifier, .key = XF86XK_AudioLowerVolume, .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master 3dB-"        },
+	{ .mod = AnyModifier, .key = XF86XK_AudioRaiseVolume, .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master 3dB+"        },
+	{ .mod = AnyModifier, .key = XF86XK_AudioMute,        .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master toggle"        },
 };

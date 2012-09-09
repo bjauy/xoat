@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <X11/Xatom.h>
 #include <X11/Xproto.h>
 #include <X11/keysym.h>
+#include <X11/XF86keysym.h>
 #include <X11/XKBlib.h>
 #include <X11/extensions/Xinerama.h>
 #include <stdio.h>
