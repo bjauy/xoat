@@ -99,12 +99,12 @@ binding keys[] = {
 	// Find or start apps by WM_CLASS (lower case match).
 	
 	// Changed apps
-	{ .mod = Mod4Mask,    .key = XK_l,                     .act = ACTION_COMMAND,       .data = "gdmflexiserver" },
-	{ .mod = Mod4Mask,    .key = XK_Return,                .act = ACTION_FIND_OR_START, .data = "urxvt"          },
-	{ .mod = Mod4Mask,    .key = XK_w,                     .act = ACTION_FIND_OR_START, .data = "firefox"        },
-	{ .mod = Mod4Mask,    .key = XK_e,                     .act = ACTION_FIND_OR_START, .data = "gvim"           },
-	{ .mod = Mod4Mask,    .key = XK_e,                     .act = ACTION_FIND_OR_START, .data = "gvim"           },
-	{ .mod = XK_Shift_R|XK_Control_R|Mod4Mask, .key = XK_q,                 .act = ACTION_COMMAND, .data = "killall xoat"           },
+	{ .mod = Mod4Mask,    .key = XK_l,                    .act = ACTION_COMMAND,       .data = "gdmflexiserver" },
+	{ .mod = Mod4Mask,    .key = XK_Return,               .act = ACTION_FIND_OR_START, .data = "urxvt"          },
+	{ .mod = Mod4Mask,    .key = XK_w,                    .act = ACTION_FIND_OR_START, .data = "firefox"        },
+	{ .mod = Mod4Mask,    .key = XK_e,                    .act = ACTION_FIND_OR_START, .data = "gvim"           },
+	{ .mod = Mod4Mask,    .key = XK_e,                    .act = ACTION_FIND_OR_START, .data = "gvim"           },
+	{ .mod = ShiftMask|ControlMask|Mod4Mask, .key = XK_q, .act = ACTION_COMMAND, .data = "killall xoat"           },
 	{ .mod = AnyModifier, .key = XF86XK_AudioLowerVolume, .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master 3dB-"        },
 	{ .mod = AnyModifier, .key = XF86XK_AudioRaiseVolume, .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master 3dB+"        },
 	{ .mod = AnyModifier, .key = XF86XK_AudioMute,        .act = ACTION_COMMAND,       .data = "amixer -q sset Master toggle"        },
