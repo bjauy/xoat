@@ -1,7 +1,7 @@
 # Contributor: Sean Pringle <sean.pringle@gmail.com>
 
 pkgname=xoat-git
-pkgver=20120909
+pkgver=20120910
 pkgrel=1
 pkgdesc="X11 Obstinate Asymmetric Tiler"
 arch=('i686' 'x86_64')
