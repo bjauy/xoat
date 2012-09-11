@@ -71,6 +71,11 @@ enum {
 	SPOT1_RIGHT
 };
 
+enum {
+	FOCUS_IGNORE=1,
+	FOCUS_STEAL,
+};
+
 typedef struct {
 	short x, y, w, h;
 } box;
@@ -90,7 +95,7 @@ int nmonitors = 1;
 typedef struct {
 	Window window;
 	XWindowAttributes attr;
-	Window transient_for;
+	Window transient, leader;
 	Atom type, states[MAX_NET_WM_STATES+1];
 	short monitor, spot, visible, manage, input, urgent;
 	char *class;
@@ -106,7 +111,21 @@ typedef struct {
 
 short current_spot = 0, current_mon = 0;
 Window current = None;
-stack inplay, snapshot;
+stack windows, snapshot;
+
+#define for_windows(i,c)\
+	for (query_windows(), (i) = 0; (i) < windows.depth; (i)++)\
+		if (((c) = windows.clients[(i)]))
+
+#define for_windows_rev(i,c)\
+	for (query_windows(), (i) = windows.depth-1; (i) > -1; (i)--)\
+		if (((c) = windows.clients[(i)]))
+
+#define for_spots(i)\
+	for ((i) = SPOT1; (i) <= SPOT3; (i)++)
+
+#define for_spots_rev(i)\
+	for ((i) = SPOT3; (i) >= SPOT1; (i)--)
 
 static int (*xerror)(Display *, XErrorEvent *);
 
@@ -147,6 +166,7 @@ wm_strut struts;
 	X(_NET_WM_STATE_ABOVE),\
 	X(_NET_WM_STATE_DEMANDS_ATTENTION),\
 	X(WM_DELETE_WINDOW),\
+	X(WM_CLIENT_LEADER),\
 	X(WM_TAKE_FOCUS),\
 	X(WM_PROTOCOLS)
 
@@ -176,7 +196,6 @@ enum {
 
 typedef void (*handler)(XEvent*);
 typedef void (*action)(void*, int, client*);
-typedef void (*message)(client*);
 
 typedef struct {
 	unsigned int mod;
@@ -185,3 +204,9 @@ typedef struct {
 	void *data;
 	int num;
 } binding;
+
+
+
+
+
+
