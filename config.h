@@ -5,6 +5,13 @@
 #define BORDER_FOCUS "Royal Blue"
 #define BORDER_URGENT "Red"
 #define BORDER_ABOVE "Dark Green"
+#define GAP 2
+
+// Title bar xft font
+#define TITLE "sans:bold:size=10"
+#define TITLE_BLUR "Black"
+#define TITLE_FOCUS "White"
+#define TITLE_ELLIPSIS 30
 
 // There are three static tiles called SPOT1, SPOT2, and SPOT3.
 // Want more tiles? Different layouts? Floating? Go away ;)
@@ -22,8 +29,8 @@
 
 // The layout can be flipped so SPOT1 is on the right.
 // If you do this, review the directional move/focus key bindings too.
-//#define SPOT1_ALIGN SPOT1_RIGHT
 #define SPOT1_ALIGN SPOT1_LEFT
+//#define SPOT1_ALIGN SPOT1_RIGHT
 
 // Width of SPOT1 as percentage of screen width.
 #define SPOT1_WIDTH_PCT 67
@@ -54,56 +61,82 @@
 // Should new windows be automatically focused, or ignored until focused manually?
 // IGNORE means new windows only steal focus if they obscure the current window.
 // STEAL means new windows always steal focus.
-#define FOCUS_START FOCUS_IGNORE
-//#define FOCUS_START FOCUS_STEAL
+//#define FOCUS_START FOCUS_IGNORE
+#define FOCUS_START FOCUS_STEAL
+
+// Available actions...
+// action_move             .num = SPOT1/2/3
+// action_focus            .num = SPOT1/2/3
+// action_move_direction   .num = UP/DOWN/LEFT/RIGHT
+// action_focus_direction  .num = UP/DOWN/LEFT/RIGHT
+// action_close
+// action_cycle
+// action_other
+// action_command
+// action_find_or_start
+// action_move_monitor
+// action_focus_monitor
+// action_fullscreen
+// action_above
+// action_snapshot
+// action_rollback
 
 // If you use "AnyModifier" place those keys at the end of the array.
 binding keys[] = {
 
-	// Focus the top-most window in a spot.
-	{ .mod = Mod4Mask, .key = XK_Left,  .act = ACTION_FOCUS, .num = SPOT1 },
-	{ .mod = Mod4Mask, .key = XK_Up,    .act = ACTION_FOCUS, .num = SPOT2 },
-	{ .mod = Mod4Mask, .key = XK_Right, .act = ACTION_FOCUS, .num = SPOT2 },
-	{ .mod = Mod4Mask, .key = XK_Down,  .act = ACTION_FOCUS, .num = SPOT3 },
+	// Change focus to a spot by direction.
+	{ .mod = Mod4Mask, .key = XK_Left,  .act = action_focus_direction, .num = LEFT  },
+	{ .mod = Mod4Mask, .key = XK_Up,    .act = action_focus_direction, .num = UP    },
+	{ .mod = Mod4Mask, .key = XK_Right, .act = action_focus_direction, .num = RIGHT },
+	{ .mod = Mod4Mask, .key = XK_Down,  .act = action_focus_direction, .num = DOWN  },
 
-	// Move the current window to another spot.
-	{ .mod = ShiftMask|Mod4Mask, .key = XK_Left,  .act = ACTION_MOVE, .num = SPOT1 },
-	{ .mod = ShiftMask|Mod4Mask, .key = XK_Up,    .act = ACTION_MOVE, .num = SPOT2 },
-	{ .mod = ShiftMask|Mod4Mask, .key = XK_Right, .act = ACTION_MOVE, .num = SPOT2 },
-	{ .mod = ShiftMask|Mod4Mask, .key = XK_Down,  .act = ACTION_MOVE, .num = SPOT3 },
+	// Move the current window to another spot by direction.
+	{ .mod = ShiftMask|Mod4Mask, .key = XK_Left,  .act = action_move_direction, .num = LEFT  },
+	{ .mod = ShiftMask|Mod4Mask, .key = XK_Up,    .act = action_move_direction, .num = UP    },
+	{ .mod = ShiftMask|Mod4Mask, .key = XK_Right, .act = action_move_direction, .num = RIGHT },
+	{ .mod = ShiftMask|Mod4Mask, .key = XK_Down,  .act = action_move_direction, .num = DOWN  },
 
 	// Flip between the top two windows in the current spot.
-	{ .mod = Mod4Mask, .key = XK_Tab,    .act = ACTION_OTHER },
+	{ .mod = Mod4Mask, .key = XK_Tab, .act = action_raise_nth, .num = 1 },
 
 	// Cycle through all windows in the current spot.
-	{ .mod = Mod4Mask, .key = XK_grave,  .act = ACTION_CYCLE },
+	{ .mod = Mod4Mask, .key = XK_grave,  .act = action_cycle },
+
+	// Raise nth window in the current spot.
+	{ .mod = Mod4Mask, .key = XK_1, .act = action_raise_nth, .num = 1 },
+	{ .mod = Mod4Mask, .key = XK_2, .act = action_raise_nth, .num = 2 },
+	{ .mod = Mod4Mask, .key = XK_3, .act = action_raise_nth, .num = 3 },
+	{ .mod = Mod4Mask, .key = XK_4, .act = action_raise_nth, .num = 4 },
+	{ .mod = Mod4Mask, .key = XK_5, .act = action_raise_nth, .num = 5 },
+	{ .mod = Mod4Mask, .key = XK_6, .act = action_raise_nth, .num = 6 },
+	{ .mod = Mod4Mask, .key = XK_7, .act = action_raise_nth, .num = 7 },
+	{ .mod = Mod4Mask, .key = XK_8, .act = action_raise_nth, .num = 8 },
+	{ .mod = Mod4Mask, .key = XK_9, .act = action_raise_nth, .num = 9 },
 
 	// Gracefully close the current window.
-	{ .mod = Mod4Mask, .key = XK_Escape, .act = ACTION_CLOSE },
+	{ .mod = Mod4Mask, .key = XK_Escape, .act = action_close },
 
 	// Toggle current window full screen.
-	{ .mod = Mod4Mask, .key = XK_f, .act = ACTION_FULLSCREEN_TOGGLE },
+	{ .mod = Mod4Mask, .key = XK_f, .act = action_fullscreen },
 
 	// Toggle current window above.
-	{ .mod = Mod4Mask, .key = XK_a, .act = ACTION_ABOVE_TOGGLE },
+	{ .mod = Mod4Mask, .key = XK_a, .act = action_above },
 
 	// Switch focus between monitors.
-	{ .mod = Mod4Mask, .key = XK_Next,  .act = ACTION_FOCUS_MONITOR, .num = +1 },
-	{ .mod = Mod4Mask, .key = XK_Prior, .act = ACTION_FOCUS_MONITOR, .num = -1 },
+	{ .mod = Mod4Mask, .key = XK_Next,  .act = action_focus_monitor, .num = +1 },
+	{ .mod = Mod4Mask, .key = XK_Prior, .act = action_focus_monitor, .num = -1 },
 
 	// Move windows between monitors.
-	{ .mod = ShiftMask|Mod4Mask, .key = XK_Next,  .act = ACTION_MOVE_MONITOR, .num = +1 },
-	{ .mod = ShiftMask|Mod4Mask, .key = XK_Prior, .act = ACTION_MOVE_MONITOR, .num = -1 },
+	{ .mod = ShiftMask|Mod4Mask, .key = XK_Next,  .act = action_move_monitor, .num = +1 },
+	{ .mod = ShiftMask|Mod4Mask, .key = XK_Prior, .act = action_move_monitor, .num = -1 },
 
 	// Launcher
-	{ .mod = Mod4Mask, .key = XK_x, .act = ACTION_COMMAND, .data = "dmenu_run" },
+	{ .mod = Mod4Mask, .key = XK_x, .act = action_command, .data = "dmenu_run" },
 
 	// Snapshot state
-	{ .mod = Mod4Mask, .key = XK_s, .act = ACTION_SNAPSHOT },
-	{ .mod = Mod4Mask, .key = XK_r, .act = ACTION_ROLLBACK },
+	{ .mod = Mod4Mask, .key = XK_s, .act = action_snapshot },
+	{ .mod = Mod4Mask, .key = XK_r, .act = action_rollback },
 
-	// Find or start apps by WM_CLASS (lower case match).
-	
 	// Changed apps
 	{ .mod = Mod4Mask,    .key = XK_l,                    .act = ACTION_COMMAND,       .data = "gdmflexiserver" },
 	{ .mod = Mod4Mask,    .key = XK_Return,               .act = ACTION_FIND_OR_START, .data = "urxvt"          },
@@ -116,4 +149,5 @@ binding keys[] = {
 	{ .mod = AnyModifier, .key = XF86XK_AudioLowerVolume, .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master 3dB-"        },
 	{ .mod = AnyModifier, .key = XF86XK_AudioRaiseVolume, .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master 3dB+"        },
 	{ .mod = AnyModifier, .key = XF86XK_AudioMute,        .act = ACTION_COMMAND,       .data = "amixer -q sset Master toggle"        },
+
 };
