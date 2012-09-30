@@ -1,4 +1,5 @@
 // xoat config.
+#include <X11/XF86keysym.h>
 
 #define BORDER 2
 #define BORDER_BLUR "Dark Gray"
@@ -138,16 +139,16 @@ binding keys[] = {
 	{ .mod = Mod4Mask, .key = XK_r, .act = action_rollback },
 
 	// Changed apps
-	{ .mod = Mod4Mask,    .key = XK_l,                    .act = ACTION_COMMAND,       .data = "gdmflexiserver" },
-	{ .mod = Mod4Mask,    .key = XK_Return,               .act = ACTION_FIND_OR_START, .data = "urxvt"          },
-	{ .mod = Mod4Mask,    .key = XK_w,                    .act = ACTION_FIND_OR_START, .data = "firefox"        },
-	{ .mod = Mod4Mask,    .key = XK_e,                    .act = ACTION_FIND_OR_START, .data = "gvim"           },
-	{ .mod = Mod4Mask,    .key = XK_1,                    .act = ACTION_COMMAND, .data = "setxkbmap pl"           },
-	{ .mod = Mod4Mask,    .key = XK_2,                    .act = ACTION_COMMAND, .data = "setxkbmap us altgr-intl"           },
-	{ .mod = ShiftMask|ControlMask|Mod4Mask, .key = XK_q, .act = ACTION_COMMAND, .data = "xoat exit"           },
-	{ .mod = ControlMask|Mod4Mask, .key = XK_r, .act = ACTION_COMMAND, .data = "xoat restart"           },
-	{ .mod = AnyModifier, .key = XF86XK_AudioLowerVolume, .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master 3dB-"        },
-	{ .mod = AnyModifier, .key = XF86XK_AudioRaiseVolume, .act = ACTION_COMMAND,       .data = "amixer -q -c 0 sset Master 3dB+"        },
-	{ .mod = AnyModifier, .key = XF86XK_AudioMute,        .act = ACTION_COMMAND,       .data = "amixer -q sset Master toggle"        },
+	{ .mod = Mod4Mask,    .key = XK_l,                    .act = action_command,       .data = "gdmflexiserver" },
+	{ .mod = Mod4Mask,    .key = XK_Return,               .act = action_find_or_start, .data = "urxvt"          },
+	{ .mod = Mod4Mask,    .key = XK_w,                    .act = action_find_or_start, .data = "firefox"        },
+	{ .mod = Mod4Mask,    .key = XK_e,                    .act = action_find_or_start, .data = "gvim"           },
+	{ .mod = Mod4Mask,    .key = XK_1,                    .act = action_command, .data = "setxkbmap pl"           },
+	{ .mod = Mod4Mask,    .key = XK_2,                    .act = action_command, .data = "setxkbmap us altgr-intl"           },
+	{ .mod = ShiftMask|ControlMask|Mod4Mask, .key = XK_q, .act = action_command, .data = "xoat exit"           },
+	{ .mod = ControlMask|Mod4Mask, .key = XK_r, .act = action_command, .data = "xoat restart"           },
+	{ .mod = AnyModifier, .key = XF86XK_AudioLowerVolume, .act = action_command,       .data = "amixer -q -c 0 sset Master 3dB-"        },
+	{ .mod = AnyModifier, .key = XF86XK_AudioRaiseVolume, .act = action_command,       .data = "amixer -q -c 0 sset Master 3dB+"        },
+	{ .mod = AnyModifier, .key = XF86XK_AudioMute,        .act = action_command,       .data = "amixer -q sset Master toggle"        }
 
 };
