@@ -124,25 +124,15 @@ binding keys[] = {
 	{ .mod = Mod4Mask, .key = XK_F2, .act = action_command, .data = "chromium"  },
 	{ .mod = Mod4Mask, .key = XK_F3, .act = action_command, .data = "pcmanfm"   },
 
-<<<<<<< HEAD
 	// Changed apps
 	{ .mod = Mod4Mask,    .key = XK_l,                    .act = action_command,       .data = "gdmflexiserver" },
 	{ .mod = Mod4Mask,    .key = XK_Return,               .act = action_find_or_start, .data = "urxvt"          },
 	{ .mod = Mod4Mask,    .key = XK_w,                    .act = action_find_or_start, .data = "firefox"        },
 	{ .mod = Mod4Mask,    .key = XK_e,                    .act = action_find_or_start, .data = "gvim"           },
-	{ .mod = Mod4Mask,    .key = XK_F1,                    .act = action_command, .data = "setxkbmap pl"           },
-	{ .mod = Mod4Mask,    .key = XK_F2,                    .act = action_command, .data = "setxkbmap us altgr-intl"           },
 	{ .mod = ShiftMask|ControlMask|Mod4Mask, .key = XK_q, .act = action_command, .data = "xoat exit"           },
 	{ .mod = ControlMask|Mod4Mask, .key = XK_r, .act = action_command, .data = "xoat restart"           },
 	{ .mod = AnyModifier, .key = XF86XK_AudioLowerVolume, .act = action_command,       .data = "amixer -q -c 0 sset Master 3dB-"        },
 	{ .mod = AnyModifier, .key = XF86XK_AudioRaiseVolume, .act = action_command,       .data = "amixer -q -c 0 sset Master 3dB+"        },
 	{ .mod = AnyModifier, .key = XF86XK_AudioMute,        .act = action_command,       .data = "amixer -q sset Master toggle"        }
 
-=======
-	// Find or start apps by WM_CLASS (lower case match).
-	// Only works for apps that use some form of their binary name as their class...
-	{ .mod = AnyModifier, .key = XK_F1, .act = action_find_or_start, .data = "konsole"  },
-	{ .mod = AnyModifier, .key = XK_F2, .act = action_find_or_start, .data = "chromium" },
-	{ .mod = AnyModifier, .key = XK_F3, .act = action_find_or_start, .data = "pcmanfm"  },
->>>>>>> 010427c902c48dbc07ad30c6adaf3711d3f985eb
 };
