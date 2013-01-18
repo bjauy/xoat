@@ -1,7 +1,7 @@
 # Contributor: Sean Pringle <sean.pringle@gmail.com>
 
 pkgname=xoat-git
-pkgver=20121001
+pkgver=20121108
 pkgrel=1
 pkgdesc="X11 Obstinate Asymmetric Tiler"
 arch=('i686' 'x86_64')
@@ -39,6 +39,7 @@ build() {
 package() {
   cd "$srcdir/$_gitname-build"
   install -Dm 755 $_gitname "$pkgdir/usr/bin/$_gitname"
+  install -Dm 755 "$_gitname-debug" "$pkgdir/usr/bin/$_gitname-debug"
   gzip -c "$_gitname.1" > "$_gitname.1.gz"
   install -Dm644 "$_gitname.1.gz" "$pkgdir/usr/share/man/man1/$_gitname.1.gz"
 }
